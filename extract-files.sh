@@ -17,8 +17,8 @@
 
 set -e
 
-DEVICE=wiam_24
-VENDOR=wolder
+DEVICE=papyrus
+VENDOR=tcsion
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"

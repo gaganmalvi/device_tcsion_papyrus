@@ -1,7 +1,7 @@
 # inherit from the proprietary version
--include vendor/wolder/wiam_24/BoardConfigVendor.mk
+-include vendor/tcsion/papyrus/BoardConfigVendor.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/wolder/wiam_24/include
+TARGET_SPECIFIC_HEADER_PATH := device/tcsion/papyrus/include
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6580
@@ -22,7 +22,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/wolder/wiam_24/kernel
+TARGET_PREBUILT_KERNEL := device/tcsion/papyrus/kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --tags_offset 0x0e000000
 
 BOARD_KERNEL_CMDLINE += \
@@ -35,15 +35,15 @@ BOARD_CUSTOM_BOOTIMG := true
 TARGET_KMODULES := true
 
 # make_ext4fs requires numbers in dec format
-BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520 
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520 
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 13474725888 
-BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5737283584
 BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := "wolder_wiam_24,wiam_24,b6580_weg_a_m"
+TARGET_OTA_ASSERT_DEVICE := "papyrus,hiteq8321_tb_n"
 
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
@@ -51,7 +51,7 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
 
 # EGL
-BOARD_EGL_CFG := device/wolder/wiam_24/configs/egl.cfg
+BOARD_EGL_CFG := device/tcsion/papyrus/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
@@ -66,7 +66,7 @@ BOARD_GPS_LIBRARIES := true
 BOARD_MEDIATEK_USES_GPS := true
 
 # RIL 
-BOARD_RIL_CLASS := ../../../device/wolder/wiam_24/ril/
+BOARD_RIL_CLASS := ../../../device/tcsion/papyrus/ril/
 
 BOARD_CONNECTIVITY_VENDOR := MediaTek
 BOARD_CONNECTIVITY_MODULE := conn_soc
@@ -86,7 +86,7 @@ WIFI_DRIVER_FW_PATH_P2P :=P2P
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/wolder/wiam_24/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/tcsion/papyrus/bluetooth
 
 # Offline charging
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
@@ -98,8 +98,8 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
 # CWM
-TARGET_RECOVERY_FSTAB := device/wolder/wiam_24/rootdir/root/recovery.fstab
-TARGET_PREBUILT_RECOVERY_KERNEL := device/wolder/wiam_24/kernel
+TARGET_RECOVERY_FSTAB := device/tcsion/papyrus/rootdir/root/recovery.fstab
+TARGET_PREBUILT_RECOVERY_KERNEL := device/tcsion/papyrus/kernel
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
@@ -121,34 +121,14 @@ TW_USE_TOOLBOX := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 
 BOARD_SEPOLICY_DIRS := \
-       device/wolder/wiam_24/sepolicy
+       device/tcsion/papyrus/sepolicy
 
 # Use old sepolicy version
 POLICYVERS := 29
 
 # Seccomp filter
-BOARD_SECCOMP_POLICY += device/wolder/wiam_24/seccomp
+BOARD_SECCOMP_POLICY += device/tcsion/papyrus/seccomp
 
 # build old-style zip files (required for ota updater)
 BLOCK_BASED_OTA := true
-
-TARGET_LDPRELOAD += libxlog.so:libmtk_symbols.so
-
-##################################
-#    **Odex Configuration**
-#      true = Odexed Rom
-#      false = Deodexed Rom
-#      null = Rom source decides
-##################################
-ODEX := false
-
-ifeq ($(ODEX),true)
-    WITH_DEXPREOPT := true
-    DISABLE_DEXPREOPT := false
-endif
-
-ifeq ($(ODEX),false)
-    WITH_DEXPREOPT := false
-    DISABLE_DEXPREOPT := true
-endif
 

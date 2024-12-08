@@ -2,34 +2,31 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # These additionals go to /default.prop
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0 \
-ro.allow.mock.location=1 \
-ro.debuggable=1 \
-ro.adb.secure=0 \
-persist.service.acm.enable=0 \
-persist.sys.usb.config=mtp \
-ro.mount.fs=EXT4 \
-debug.hwui.render_dirty_regions=false \
-persist.radio.multisim.config=dsds \
-ro.telephony.ril_class=MT6580 \
-ro.telephony.ril.config=signalstrength \
-ro.telephony.sim.count=2 \
-persist.gemini.sim_num=2 \
-ril.current.share_modem=2 \
-ro.mtk_gps_support=1 \
-ro.mtk_agps_app=1 \
-persist.debug.xlog.enable=1 \
-persist.sys.display.clearMotion=0 
+ADDITIONAL_DEFAULT_PROPERTIES +=
+    ro.secure=0 \
+    ro.debuggable=1 \
+    ro.adb.secure=0 \
+    persist.service.acm.enable=0 \
+    persist.sys.usb.config=mtp \
+    ro.mount.fs=EXT4 \
+    debug.hwui.render_dirty_regions=false \
+    persist.radio.multisim.config=ss \
+    ro.telephony.ril_class=MT6580 \
+    ro.telephony.ril.config=signalstrength \
+    ro.telephony.sim.count=2 \
+    ro.mtk_gps_support=1 \
+    ro.mtk_agps_app=1
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-$(call inherit-product-if-exists, vendor/wolder/wiam_24/wiam_24-vendor.mk)
+$(call inherit-product-if-exists, vendor/tcsion/papyrus/papyrus-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/wolder/wiam_24/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/wolder/wiam_24/overlay # enable this to be able overlay a default wallpaper
+DEVICE_PACKAGE_OVERLAYS += device/tcsion/papyrus/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/tcsion/papyrus/overlay # enable this to be able overlay a default wallpaper
 
-LOCAL_PATH := device/wolder/wiam_24
+LOCAL_PATH := device/tcsion/papyrus
+
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
 else
@@ -37,7 +34,6 @@ else
 endif
 
 PRODUCT_PACKAGES += \
-    libxlog \
     libmtk_symbols
 
 # Audio
@@ -59,29 +55,6 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
-    $(LOCAL_PATH)/configs/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
-    $(LOCAL_PATH)/configs/hostapd/hostapd.deny:system/etc/hostapd/hostapd.deny
-
-# Telecomm
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/ecc_list.xml:system/etc/ecc_list.xml \
-    $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
-
-# AGPS
-PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml
-
-# Keylayout
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
-
-# Thermal
-PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/configs/thermal.conf:system/etc/.tp/thermal.conf \
-     $(LOCAL_PATH)/configs/thermal.off.conf:system/etc/.tp/thermal.off.conf \
-     $(LOCAL_PATH)/configs/.ht120.mtc:system/etc/.tp/.ht120.mtc \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -127,25 +100,17 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/fmr/mt6580_fm_cust.cfg:system/etc/fmr/mt6580_fm_cust.cfg
-
 # Camera
 PRODUCT_PACKAGES += \
     Snap
 
-# mrdump related
-PRODUCT_PACKAGES += \
-    libmrdump \
-    mrdump_tool
-
 # GPS
 PRODUCT_PACKAGES += \
-	gps.mt6580
+    gps.mt6580
 
 # MiraVision
 PRODUCT_PACKAGES += \
-	MiraVision
+    MiraVision
 	
 # Power
 PRODUCT_PACKAGES += \
@@ -153,8 +118,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-TARGET_SCREEN_HEIGHT := 854
-TARGET_SCREEN_WIDTH := 480
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 800
 
 # Dalvik
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)

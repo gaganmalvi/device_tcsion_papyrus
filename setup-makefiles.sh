@@ -17,10 +17,10 @@
 
 set -e
 
-DEVICE=wiam_24
-VENDOR=wolder
+DEVICE=papyrus
+VENDOR=tcsion
 
-INITIAL_COPYRIGHT_YEAR=2017
+INITIAL_COPYRIGHT_YEAR=2024
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
