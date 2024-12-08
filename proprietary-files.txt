@@ -4,6 +4,8 @@ bin/racoon
 bin/hostapd
 bin/hostapd_cli
 
+lib/libfs_mgr.so
+
 system/etc/a2dp_audio_policy_configuration.xml
 system/etc/audio_effects.conf
 system/etc/audio_policy_configuration.xml
@@ -66,8 +68,6 @@ vendor/bin/nvram_daemon
 vendor/bin/orientationd
 vendor/bin/perf_native_test
 vendor/bin/pq
-vendor/bin/program_binary_builder
-vendor/bin/program_binary_service
 vendor/bin/radvd
 vendor/bin/rilproxy
 vendor/bin/rtt
@@ -85,7 +85,6 @@ vendor/bin/thermal_manager
 vendor/bin/tiny_mkswap
 vendor/bin/tiny_swapoff
 vendor/bin/tiny_swapon
-vendor/bin/vtservice
 vendor/bin/wfca
 vendor/bin/wifi2agps
 vendor/bin/wmt_concurrency
@@ -167,6 +166,7 @@ vendor/lib/libamrvt.so
 vendor/lib/libamr_wrap.so
 vendor/lib/libatciserv_jni.so
 vendor/lib/libatvctrlservice.so
+vendor/lib/libaudiotoolkit.so
 vendor/lib/libaudiocompensationfilter.so
 vendor/lib/libaudiocomponentengine.so
 vendor/lib/libaudiocustparam.so
@@ -224,7 +224,7 @@ vendor/lib/libcustom_nvram.so
 vendor/lib/libcustom_prop.so
 vendor/lib/libcvsd_mtk.so
 vendor/lib/libdirect-coredump.so
-vendor/lib/libdpframework.so
+-vendor/lib/libdpframework.so
 vendor/lib/libdrmmtkutil.so
 vendor/lib/libdrmmtkwhitelist.so
 vendor/lib/libem_bt_jni.so
@@ -333,12 +333,14 @@ vendor/lib/libprogrambinary.so
 vendor/lib/libratconfig.so
 vendor/lib/librilmtkmd2.so
 vendor/lib/librilmtk.so
+vendor/lib/libstorage_otp.so
 vendor/lib/libshowlogo.so
 vendor/lib/libsink.so
 vendor/lib/libsource.so
 vendor/lib/libspeech_enh_lib.so
 vendor/lib/libstagefrighthw.so
 vendor/lib/libSwJpgCodec.so
+vendor/lib/libsysenv.so
 vendor/lib/libterservice.so
 vendor/lib/libtimestretch.so
 vendor/lib/libtouchfilter.so

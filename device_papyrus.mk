@@ -64,6 +64,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/fstab.mt6580:root/fstab.mt6580 \
     $(LOCAL_PATH)/rootdir/root/init.mt6580.rc:root/init.mt6580.rc \
+    $(LOCAL_PATH)/rootdir/root/init.aee.rc:root/init.aee.rc \
+    $(LOCAL_PATH)/rootdir/root/init.environ.rc:root/init.environ.rc \
+    $(LOCAL_PATH)/rootdir/root/init.common_svc.rc:root/init.common_svc.rc \
+    $(LOCAL_PATH)/rootdir/root/init.nvdata.rc:root/init.nvdata.rc \
+    $(LOCAL_PATH)/rootdir/root/init.rilproxy.rc:root/init.rilproxy.rc \
+    $(LOCAL_PATH)/rootdir/root/init.connectivity.rc:root/init.connectivity.rc \
     $(LOCAL_PATH)/rootdir/root/init.modem.rc:root/init.modem.rc \
     $(LOCAL_PATH)/rootdir/root/init.recovery.mt6580.rc:root/init.recovery.mt6580.rc \
     $(LOCAL_PATH)/rootdir/root/init.mt6580.usb.rc:root/init.mt6580.usb.rc \
@@ -119,6 +125,12 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.mt6580
+
+# extra libs
+PRODUCT_PACKAGES += \
+    libion \
+    libtinyxml \
+    libtinycompress
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
