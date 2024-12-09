@@ -115,8 +115,8 @@ PRODUCT_PACKAGES += \
     Snap
 
 # GPS
-PRODUCT_PACKAGES += \
-    gps.mt6580
+# PRODUCT_PACKAGES += \
+#     gps.mt6580
 
 # MiraVision
 PRODUCT_PACKAGES += \
